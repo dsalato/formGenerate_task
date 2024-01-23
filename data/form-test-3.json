@@ -1,0 +1,67 @@
+{
+  "title": "Тест #3",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cumque ducimus eius ex iste nihil nisi nobis praesentium repellendus rerum.",
+  "fields": [
+    {
+      "label": "Как вас зовут?",
+      "attrs": {
+        "name": "name",
+        "type": "text"
+      }
+    },
+    {
+      "label": "Ваш пол",
+      "attrs": {
+        "name": "sex",
+        "type": "select",
+        "variants": [
+          {
+            "value": "male",
+            "label": "Мужской"
+          },
+          {
+            "value": "female",
+            "label": "Женский"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Расскажите немного о себе",
+      "attrs": {
+        "name": "about",
+        "type": "textarea"
+      }
+    },
+    {
+      "label": "Какую(ие) роль(и) в IT вы бы хотели попробовать?",
+      "attrs": {
+        "name": "question-1",
+        "type": "checkbox",
+        "variants": [
+          {
+            "value": "F",
+            "label": "Frontend Разработчик"
+          },
+          {
+            "value": "B",
+            "label": "Backend Разработчик"
+          },
+          {
+            "value": "M",
+            "label": "Менеджер"
+          },
+          {
+            "value": "QA",
+            "label": "Тестировщик"
+          },
+          {
+            "value": "D",
+            "label": "Дизайнер"
+          }
+        ]
+      }
+    }
+  ],
+  "buttons": ["submit"]
+}

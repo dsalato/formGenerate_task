@@ -1,0 +1,27 @@
+{
+  "title": "Тест #1",
+  "fields": [
+    {
+      "label": "Имя",
+      "attrs": {
+        "name": "name",
+        "type": "text"
+      }
+    },
+    {
+      "label": "Фамилия",
+      "attrs": {
+        "name": "surname",
+        "type": "text"
+      }
+    },
+    {
+      "label": "Отчество",
+      "attrs": {
+        "type": "text",
+        "name": "middlename"
+      }
+    }
+  ],
+  "buttons": ["submit", "clear"]
+}

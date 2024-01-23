@@ -1,0 +1,38 @@
+{
+  "title": "Тест #2",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae cumque ducimus eius ex iste nihil nisi nobis praesentium repellendus rerum.",
+  "fields": [
+    {
+      "label": "Как вас зовут?",
+      "attrs": {
+        "name": "name",
+        "type": "text"
+      }
+    },
+    {
+      "label": "Ваш пол",
+      "attrs": {
+        "name": "sex",
+        "type": "radio",
+        "variants": [
+          {
+            "value": "male",
+            "label": "Мужской"
+          },
+          {
+            "value": "female",
+            "label": "Женский"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Расскажите немного о себе",
+      "attrs": {
+        "name": "about",
+        "type": "textarea"
+      }
+    }
+  ],
+  "buttons": ["submit"]
+}
