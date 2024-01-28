@@ -1,10 +1,30 @@
+type variantType = {
+    value: string,
+    label: string
+}
+type attrsType = {
+    name: string,
+    type: string,
+    variants?: variantType[]
+}
+type fieldType = {
+    label: string,
+    attrs: attrsType
+}
+type formType = {
+    title: string,
+    description?: string,
+    fields: fieldType[],
+    buttons: string[]
+}
+
 // Функция получения файла JSON
 const getDataJson = async () => {
     // Получаем элемент select
     let selectElement = document.getElementById('formSelector') as HTMLSelectElement;
 
     // Получаем выбранное значение
-    let selectedValue: any = selectElement.options[selectElement.selectedIndex].value;
+    let selectedValue: string  = selectElement.options[selectElement.selectedIndex].value;
 
     // Проверяем, что значение не пустое
     if (selectedValue) {
@@ -19,13 +39,14 @@ const getDataJson = async () => {
     }
 }
 // Функция для генерации формы
-const generateForm = async () => {
-    const data =  await getDataJson();
+const generateForm = async()  => {
+    const data: formType =  await getDataJson();
     const formContainer = document.getElementById("form");
     // Проверяем есть ли тег form, если есть, то удаляем
     document.querySelector('form') && formContainer.removeChild(document.querySelector('form'));
 
     const form = document.createElement('form');
+    form.id = 'generateForm';
     // Установливаем атрибуты формы
     form.setAttribute('method', 'post');
 
@@ -38,7 +59,7 @@ const generateForm = async () => {
     description.textContent = data.description;
     form.appendChild(description);
     // Добавляем поля формы
-    data.fields.forEach(field => {
+    data.fields.forEach((field:fieldType) => {
         const { label, attrs: { type, name, variants } } = field;
         const inputElement = createInputElement(type, name, variants);
 
@@ -49,13 +70,13 @@ const generateForm = async () => {
         form.appendChild(labelElement);
     });
 
-    function createInputElement(type, name, variants) {
+    function createInputElement(type:string, name:string, variants:variantType[]) {
         // Создание input Elements в зависимости от type
         switch (type) {
             case 'select':
                 const selectElement = document.createElement('select');
                 selectElement.setAttribute('name', name);
-                variants.forEach(variant => {
+                variants.forEach((variant:variantType) => {
                     selectElement.innerHTML += `<option value="${variant.value}">${variant.label}</option>`;
                 });
                 return selectElement;
@@ -63,7 +84,7 @@ const generateForm = async () => {
             case 'radio':
             case 'checkbox':
                 const inputContainer = document.createElement('label');
-                variants.forEach(variant => {
+                variants.forEach((variant:variantType) => {
                     const input = document.createElement('input');
                     input.setAttribute('type', type);
                     input.setAttribute('name', name);
@@ -76,9 +97,11 @@ const generateForm = async () => {
                     inputContainer.appendChild(container);
                 });
                 return inputContainer;
-
-            case 'text':
             case 'textarea':
+                const textarea = document.createElement('textarea');
+                textarea.setAttribute('name', name);
+                return textarea;
+            case 'text':
             default:
                 const input = document.createElement('input');
                 input.setAttribute('type', type);
@@ -87,7 +110,7 @@ const generateForm = async () => {
         }
     }
     // Добавляем кнопки формы
-    data.buttons.forEach(button => {
+    data.buttons.forEach((button:string) => {
         const buttonElement = document.createElement('button');
         buttonElement.setAttribute('type', button === 'submit' ? 'submit' : 'reset');
         buttonElement.textContent = button;
@@ -96,17 +119,24 @@ const generateForm = async () => {
     // Добавить форму в контейнер
     formContainer.appendChild(form);
     // Вывод данных из формы в консоль
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const formElement = event.target as HTMLFormElement;
-        // Собрать данные формы
-        const formData = new FormData(formElement);
-        // Преобразовать данные в объект JSON
-        const formObject: any = {};
-        formData.forEach((value, key) => {
-            formObject[key] = value;
-        });
-        // Вывести данные в консоль
-        console.log(formObject);
-    });
+    const result = document.getElementById('generateForm');
+    console.log(await getFormData(result));
+
 }
+//Функция получения данных из формы
+const getFormData = (form: HTMLElement) => {
+    return new Promise((resolve) => {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const formElement = event.target as HTMLFormElement;
+            // Получение формы
+            const formData = new FormData(formElement);
+            // Преобразование данных в объект JSON
+            const formObject = {};
+            formData.forEach((value, key) => {
+                formObject[key] = value;
+            });
+            resolve(formObject);
+        });
+    });
+};

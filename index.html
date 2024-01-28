@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Генератор форм</title>
-<!--    <link rel="stylesheet" href="tailwindcss/main.css">-->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <label for="formSelector">Выберите форму</label>
-    <select id="formSelector" onchange="generateForm()">
-        <option value="">-</option>
-        <option value="form-test-1.json">Первая форма</option>
-        <option value="form-test-2.json">Вторая форма</option>
-        <option value="form-test-3.json">Третья форма</option>
-    </select>
+    <div class="formSelector">
+        <label for="formSelector">Выберите форму</label>
+        <select id="formSelector" onchange="generateForm()">
+            <option value="">-</option>
+            <option value="form-test-1.json">Первая форма</option>
+            <option value="form-test-2.json">Вторая форма</option>
+            <option value="form-test-3.json">Третья форма</option>
+        </select>
+    </div>
+
     <div id="form"></div>
     <script src="main.js"></script>
 </body>

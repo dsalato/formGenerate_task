@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+h2{
+    text-align: center;
+    margin: 10px 0;
+}
+p{
+    margin-bottom: 20px;
+}
+/*formSelector*/
+.formSelector{
+    text-align: center;
+    margin: 10px 0 30px 0;
+}
+.formSelector label{
+    font-size: 20px;
+    margin-right: 10px;
+}
+.formSelector select{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+/* form */
+form {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f4f4f4;
+}
+label {
+    display: block;
+    margin-bottom: 15px;
+}
+label:last-child label {
+    margin-top: 10px;
+}
+span{
+    margin-left: 10px;
+}
+form input[type="text"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    font-size: 16px;
+}
